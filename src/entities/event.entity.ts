@@ -1,9 +1,9 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
-import { CanceledEvent } from './canceled_event.entity'
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import { DetailProductsEvent } from './detail_products_event.entity'
 import { DetailAssistant } from './detail_assistant.entity'
 import { DetailInventary } from './detail_inventary.entity'
 import { DetailSponsor } from './detail_sponsor.entity'
+import { Partners } from './partners.entity'
 
 @Entity()
 export class Event {
@@ -40,9 +40,8 @@ export class Event {
     @Column({ type: 'longblob' })
     image: Buffer
 
-    @OneToOne(() => CanceledEvent)
-    @JoinColumn()
-    canceled: CanceledEvent
+    @ManyToOne(() => Partners, (partner) => partner.event)
+    partner: Partners
 
     @OneToMany(() => DetailProductsEvent, (detailProduct) => detailProduct.event)
     detailProduct: DetailProductsEvent[]

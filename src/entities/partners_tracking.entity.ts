@@ -4,18 +4,17 @@ import { Partners } from "./partners.entity"
 @Entity()
 export class Tracking {
     @PrimaryGeneratedColumn()
-    id_tracking : number
+    id: number
+
+    @Column({ type: 'text'})
+    tracking_info: string
+
+    @Column({ type: 'text'})
+    notes: string
 
     @Column()
-    tracking_info : Text
-
-    @Column()
-    notes : Text
-
-    @Column()
-    visit_date : Date
+    visit_date: Date
 
     @ManyToOne(() => Partners, (partners) => partners.tracking)
     partners: Partners
-
 }

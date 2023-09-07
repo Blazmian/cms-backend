@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { Event } from './event.entity'
 
 @Entity()
 export class CanceledEvent {
@@ -7,4 +8,8 @@ export class CanceledEvent {
 
     @Column({ type: 'text' })
     reason: string
+
+    @OneToOne(() => Event)
+    @JoinColumn()
+    event: Event
 }

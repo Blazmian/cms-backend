@@ -3,44 +3,44 @@ import { Partners } from "./partners.entity"
 
 @Entity()
 export class Partners_documents {
+
     @PrimaryGeneratedColumn()
-    id_partner_document : number
+    id: number
 
     @Column()
-    address_receipt : Blob
+    address_receipt: Buffer
 
     @Column()
-    constitutive_act : Blob
+    constitutive_act: Buffer
 
     @Column()
-    legal_power : Blob
+    legal_power: Buffer
 
     @Column()
-    identification : Blob
+    identification: Buffer
 
     @Column()
-    tax_certificate : Blob
+    tax_certificate: Buffer
 
     @Column()
-    format_32d : Blob
+    format_32d: Buffer
 
     @Column()
-    curriculum_company : Blob
+    curriculum_company: Buffer
 
     @Column()
-    bank_data : Blob
+    bank_data: Buffer
 
     @Column()
-    etic_code : Blob
+    etic_code: Buffer
 
     @Column()
-    compliance_use : Blob
+    compliance_use: Buffer
 
     @Column()
-    logo : Blob
+    logo: Buffer
 
     @OneToOne(() => Partners)
     @JoinColumn()
     partners: Partners
-
 }

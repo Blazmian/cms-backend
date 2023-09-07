@@ -5,12 +5,12 @@ import { Roles } from "./employees_roles.entity"
 @Entity()
 export class Department {
     @PrimaryGeneratedColumn()
-    id_department : number
+    id: number
 
-    @Column({ length : 30 })
+    @Column({ length: 30 })
     department_name: string
 
     @OneToMany(() => Roles, (roles) => roles.department)
-    roles: Roles
+    role: Roles
 
 } 

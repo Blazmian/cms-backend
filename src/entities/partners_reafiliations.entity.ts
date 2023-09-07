@@ -4,10 +4,10 @@ import { Partners } from "./partners.entity"
 @Entity()
 export class Reafiliations {
     @PrimaryGeneratedColumn()
-    id_partner_document : number
+    id: number
 
     @Column()
-    reafiliation_date : Date
+    reafiliation_date: Date
 
     @ManyToOne(() => Partners, (partners) => partners.reafiliations)
     partners: Partners

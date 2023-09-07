@@ -6,17 +6,17 @@ import { Department } from "./employees_department.entity"
 @Entity()
 export class Roles {
     @PrimaryGeneratedColumn()
-    id_role : number
+    id: number
 
-    @Column({ length : 15 })
+    @Column({ length: 15 })
     user: string
 
-    @Column({ length : 15 })
-    password : string
+    @Column({ length: 15 })
+    password: string
 
-    @ManyToOne(() => Employees, (employees) => employees.roles)
-    employees: Employees
+    @ManyToOne(() => Employees, (employees) => employees.role)
+    employe: Employees
 
-    @ManyToOne(() => Department, (department) => department.roles)
+    @ManyToOne(() => Department, (department) => department.role)
     department: Department
 } 

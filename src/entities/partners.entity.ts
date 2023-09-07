@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 import { Reafiliations } from "./partners_reafiliations.entity"
-import { Affiliated_partners } from "./partners_affiliated.entity"
+import { AffiliatedPartners } from "./partners_affiliated.entity"
 import { Tracking } from "./partners_tracking.entity"
 import { Event } from "./event.entity"
 
@@ -40,9 +40,9 @@ export class Partners {
     @OneToMany(() => Event, (event) => event.partner)
     event: Event[]
 
-    @OneToMany(() => Affiliated_partners, (affiliated_partners) => affiliated_partners.partners)
-    affiliated_partners: Affiliated_partners[]
+    @OneToMany(() => AffiliatedPartners, (affiliated_partners) => affiliated_partners.partners)
+    affiliated_partners: AffiliatedPartners[]
 
     @OneToMany(() => Tracking, (tracking) => tracking.partners)
-    tracking: Affiliated_partners[]
+    tracking: AffiliatedPartners[]
 } 

@@ -1,8 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm"
 import { Partners } from "./partners.entity"
+import { InteressedPerson } from "./interessed_person.entity"
 
 @Entity()
-export class Affiliated_partners {
+export class AffiliatedPartners {
     @PrimaryGeneratedColumn()
     id: number
 
@@ -27,4 +28,6 @@ export class Affiliated_partners {
     @ManyToOne(() => Partners, (partners) => partners.affiliated_partners)
     partners: Partners
 
+    @OneToMany(() => InteressedPerson, (interessed) => interessed.affiliated)
+    interessed: InteressedPerson[]
 }

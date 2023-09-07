@@ -4,6 +4,7 @@ import { DetailAssistant } from './detail_assistant.entity'
 import { DetailInventary } from './detail_inventary.entity'
 import { DetailSponsor } from './detail_sponsor.entity'
 import { Partners } from './partners.entity'
+import { AttendanceEvent } from './attendance_event.entity'
 
 @Entity()
 export class Event {
@@ -54,4 +55,7 @@ export class Event {
 
     @OneToMany(() => DetailSponsor, (detailSponsor) => detailSponsor.event)
     detailSponsor: DetailSponsor[]
+
+    @OneToMany(() => AttendanceEvent, (attendance) => attendance.event)
+    attendance: AttendanceEvent[]
 }

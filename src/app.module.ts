@@ -10,9 +10,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { Connection } from './configs/DBConnection';
+import { GatewayModule } from './gateway/gateway.module';
 
 @Module({
   imports: [
+    GatewayModule,
     EventsModule,
     Interessed_personsModule,
     Events_attendanceModule,

@@ -29,7 +29,6 @@ export class Interessed_personsController {
         }
     }
 
-
     @Post()
     Create(@Body() params: I_interessed_person) {
         try {

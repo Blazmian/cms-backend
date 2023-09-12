@@ -14,7 +14,7 @@ export class Interessed_personService {
     async getAll(): Promise<InteressedPersonEntity[]>{
         return await this.interessedPersonEntity.find()
     }
-
+    
     async get(id: number): Promise<InteressedPersonEntity[]> {
         return await this.interessedPersonEntity.find(
             {

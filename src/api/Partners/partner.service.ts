@@ -59,7 +59,7 @@ export class PartnerService {
         return await this.partnersEntity.delete(id)
     }
 
-    async getPartnerEvents(idPartners: number): Promise<PartnersEntity> {
-        return await this.partnersEntity.findOne({ where: { id: idPartners }, relations: ['events'] })
+    async getPartnerEvents(idPartners: number): Promise<PartnersEntity[]> {
+        return await this.partnersEntity.find({ where: { id: idPartners }, relations: ['events'] })
     }
 }

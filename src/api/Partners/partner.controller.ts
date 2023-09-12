@@ -60,12 +60,4 @@ export class PartnerController {
         }
     }
 
-    @Get('/teacher/:id')
-    getPartnerEvents(@Param('id') id: number): Promise<Partners> | string {
-        try {
-            return this.partnerService.getPartnerEvents(id)
-        } catch (error) {
-            return "Cannot read partner: " + error
-        }
-    }
 }

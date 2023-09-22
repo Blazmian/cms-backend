@@ -1,19 +1,20 @@
-import { Controller, Get} from '@nestjs/common';
-import { Event } from 'src/entities/event.entity';
+import { Controller, Get } from '@nestjs/common';
 import { EventService } from './event.service';
+import { Event } from 'src/entities/event.entity';
 
-@Controller()
+@Controller('event')
 export class EventController {
-    constructor(private eventService: EventService){
+
+    constructor(private eventService: EventService) {
 
     }
 
-    @Get('/all')
-    async getAllAssistants(): Promise<string | Event[]>{
+    @Get('/upcoming-events')
+    getUpcomingEvents () {
         try {
-            return await this.eventService.getAll()
+            return this.eventService.getUpcomingEvents()
         } catch (error) {
-            return "Cannot read assistants " + error
-        }   
+            
+        }
     }
 }

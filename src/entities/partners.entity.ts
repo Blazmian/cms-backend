@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, PrimaryColumn } from "typeorm"
 import { Reafiliations } from "./partners_reafiliations.entity"
 import { AffiliatedPartners } from "./partners_affiliated.entity"
 import { Tracking } from "./partners_tracking.entity"
@@ -7,8 +7,8 @@ import { Event } from "./event.entity"
 
 @Entity()
 export class Partners {
-    @PrimaryGeneratedColumn()
-    id: number
+    @PrimaryColumn({ length: 15 })
+    folio: string
 
     @Column({ length: 100 })
     social_reason: string
@@ -31,7 +31,7 @@ export class Partners {
     @Column()
     expiration_date: Date
 
-    @Column()
+    @Column({ default: null })
     company_image: Buffer
 
     @OneToMany(() => Reafiliations, (reafiliations) => reafiliations.partners)

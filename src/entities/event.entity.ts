@@ -38,7 +38,7 @@ export class Event {
     @Column({ length: 10 })
     status: string
 
-    @Column({ type: 'longblob' })
+    @Column({ type: 'longblob', default: null })
     image: Buffer
 
     @ManyToOne(() => Partners, (partner) => partner.event)

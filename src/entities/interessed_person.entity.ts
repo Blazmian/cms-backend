@@ -19,6 +19,9 @@ export class InteressedPerson {
     @Column({ length: 40 })
     company: string
 
+    @Column({ length: 9 })
+    sex: string
+
     @Column({ length: 50 })
     email: string
 

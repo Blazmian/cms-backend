@@ -12,8 +12,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { Connection } from './configs/DBConnection';
-
 import { GatewayModule } from './gateway/gateway.module';
+import { EventModule } from './api/Events/event.module';
+import { AssistantModule } from './api/Assistants/assistant.module';
+import { EventController } from './api/Events/event.controller';
+import { EventService } from './api/Events/event.service';
 
 @Module({
   imports: [

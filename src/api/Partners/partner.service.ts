@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Partners as PartnersEntity} from 'src/entities/partners.entity';
+import { Partners as PartnersEntity } from 'src/entities/partners.entity';
 import { IPartner } from 'src/models/Partner';
 import * as fs from 'fs'
 import { v4 as uuidv4 } from 'uuid'
@@ -11,16 +11,16 @@ export class PartnerService {
     constructor(
         @InjectRepository(PartnersEntity)
         private partnersEntity: Repository<PartnersEntity>
-    )    { }
+    ) { }
 
-    async getAll(): Promise<PartnersEntity[]>{
+    async getAll(): Promise<PartnersEntity[]> {
         return await this.partnersEntity.find()
     }
 
-    async get(id: number): Promise<PartnersEntity[]> {
+    async get(folio: string): Promise<PartnersEntity[]> {
         return await this.partnersEntity.find(
             {
-                where: { id: id }
+                where: { folio: folio }
             })
     }
 
@@ -59,7 +59,7 @@ export class PartnerService {
         return await this.partnersEntity.delete(id)
     }
 
-    async getPartnerEvents(idPartners: number): Promise<PartnersEntity[]> {
-        return await this.partnersEntity.find({ where: { id: idPartners }, relations: ['events'] })
+    async getPartnerEvents(folio: string): Promise<PartnersEntity[]> {
+        return await this.partnersEntity.find({ where: { folio: folio }, relations: ['events'] })
     }
 }

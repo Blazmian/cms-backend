@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { Partners as PartnersEntity } from 'src/entities/partners.entity';
 import { IPartner } from 'src/models/Partner';
 import * as fs from 'fs'
@@ -15,6 +15,20 @@ export class PartnerService {
 
     async getAll(): Promise<PartnersEntity[]> {
         return await this.partnersEntity.find()
+    }
+
+    async getPartnersByComercialNameNonText(): Promise<PartnersEntity[]> {
+        return await this.partnersEntity.find({
+            where: { status: 'Activo' },
+            select: ['folio', 'comercial_name', 'status']
+        })
+    }
+
+    async getPartnersByComercialName(value: string): Promise<PartnersEntity[]> {
+        return await this.partnersEntity.find({
+            where: { social_reason: Like(`%${value}%`), status: 'Activo' },
+            select: ['folio', 'comercial_name', 'status']
+        })
     }
 
     async get(folio: string): Promise<PartnersEntity[]> {

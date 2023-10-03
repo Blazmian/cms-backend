@@ -3,20 +3,38 @@ import { PartnerService } from './partner.service';
 import { Partners } from 'src/entities/partners.entity';
 import { IPartner } from 'src/models/Partner';
 
-@Controller()
+@Controller('partner')
 export class PartnerController {
-    
-    constructor(private partnerService: PartnerService){
+
+    constructor(private partnerService: PartnerService) {
 
     }
 
     @Get('/all')
-    async getAllPartners(): Promise<string | Partners[]>{
+    async getAllPartners(): Promise<string | Partners[]> {
         try {
             return await this.partnerService.getAll()
         } catch (error) {
             return "Cannot read partners " + error
-        }   
+        }
+    }
+
+    @Get('/partners-by-comercial-name/')
+    async getPartnersBySocialReasonNonText(): Promise<string | Partners[]> {
+        try {
+            return await this.partnerService.getPartnersByComercialNameNonText()
+        } catch (error) {
+            return "Cannot read partners " + error
+        }
+    }
+
+    @Get('/partners-by-comercial-name/:social_reason')
+    async getPartnersBySocialReason(@Param('social_reason') params): Promise<string | Partners[]> {
+        try {
+            return await this.partnerService.getPartnersByComercialName(params)
+        } catch (error) {
+            return "Cannot read partners " + error
+        }
     }
 
     @Get('one/:id')

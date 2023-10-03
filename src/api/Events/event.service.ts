@@ -3,16 +3,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Event as EventEntity } from 'src/entities/event.entity';
 import { ICreateEvent } from 'src/models/Event';
 import { Repository } from 'typeorm';
+import { PartnerService } from '../Partners/partner.service';
 
 @Injectable()
 export class EventService {
     constructor(
         @InjectRepository(EventEntity)
-        private eventEntity: Repository<EventEntity>
+        private eventEntity: Repository<EventEntity>,
+        private partnerService: PartnerService
     ) { }
 
     async getOne(id: number): Promise<EventEntity> {
-        return await this.eventEntity.findOne({ where: { id: id, status: 'Proceso' } })
+        return await this.eventEntity.findOne({ where: { id: id } })
     }
 
     async getUpcomingEvents(): Promise<EventEntity[]> {
@@ -52,7 +54,7 @@ export class EventService {
         })
     }
 
-    async create(idPartner: number, eventData: ICreateEvent) {
+    async create(folioPartner: string, eventData: ICreateEvent) {
         const newEvent = new EventEntity()
         newEvent.event_name = eventData.event_name
         newEvent.description = eventData.description
@@ -63,7 +65,11 @@ export class EventService {
         newEvent.hour = new Date(eventData.hour)
         newEvent.image = eventData.image
 
-        return await this.eventEntity.save(eventData)
+        const partner = await this.partnerService.get(folioPartner)
+        newEvent.partner = partner
+        newEvent.status = 'Proceso'
+
+        return await this.eventEntity.save(newEvent)
     }
 
     async update(id: number, body: ICreateEvent) {

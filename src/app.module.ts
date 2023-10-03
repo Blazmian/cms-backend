@@ -17,6 +17,7 @@ import { EventModule } from './api/Events/event.module';
 import { AssistantModule } from './api/Assistants/assistant.module';
 import { EventController } from './api/Events/event.controller';
 import { EventService } from './api/Events/event.service';
+import { PartnerService } from './api/Partners/partner.service';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { EventService } from './api/Events/event.service';
   providers: [
     DetailAssistantService, AssistantService,
     EventService,
-    AppService,],
+    AppService,
+    PartnerService],
 })
 export class AppModule { }

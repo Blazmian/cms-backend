@@ -31,8 +31,8 @@ export class PartnerService {
         })
     }
 
-    async get(folio: string): Promise<PartnersEntity[]> {
-        return await this.partnersEntity.find(
+    async get(folio: string): Promise<PartnersEntity> {
+        return await this.partnersEntity.findOne(
             {
                 where: { folio: folio }
             })

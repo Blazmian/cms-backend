@@ -38,7 +38,7 @@ export class PartnerController {
     }
 
     @Get('one/:id')
-    getPartner(@Param('id') params): Promise<Partners[]> | string {
+    getPartner(@Param('id') params): Promise<Partners> | string {
         try {
             const res = this.partnerService.get(params)
             return res

@@ -62,7 +62,7 @@ export class EventService {
         newEvent.place = eventData.place
         newEvent.link = eventData.link
         newEvent.date = eventData.date
-        newEvent.hour = new Date(eventData.hour)
+        newEvent.hour = new Date(`1970-01-01T${eventData.hour}`)
         newEvent.image = eventData.image
 
         const partner = await this.partnerService.get(folioPartner)

@@ -57,9 +57,9 @@ export class PartnerController {
             return "Cannot create partner: " + error
         }
     }
-
+    
     @Put('update/:id')
-    Update(@Param('id') id: number, @Body() params: IPartner) {
+    Update(@Param('id') id: string, @Body() params: IPartner) {
         try {
             const res = this.partnerService.update(id, params)
             return res

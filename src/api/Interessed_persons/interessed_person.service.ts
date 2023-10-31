@@ -29,7 +29,7 @@ export class Interessed_personService {
         newInteressedPerson.second_last_name = interessedPerson.second_last_name
         newInteressedPerson.company = interessedPerson.company
         newInteressedPerson.email = interessedPerson.email
-        newInteressedPerson.registration_date = interessedPerson.registration_date
+        newInteressedPerson.registration_date = new Date()
 
         const res = await this.interessedPersonEntity.save(newInteressedPerson)
 

@@ -17,6 +17,8 @@ import { EventModule } from './api/Events/event.module';
 import { AssistantModule } from './api/Assistants/assistant.module';
 import { EventController } from './api/Events/event.controller';
 import { EventService } from './api/Events/event.service';
+import { ProviderModule } from './api/Providers/provider.module';
+import { Provider_productsModule } from './api/Provider_products/provider_products.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { EventService } from './api/Events/event.service';
     Partners_affiliatedModule,
     DetailAssistantModule,
     PartnerModule,
+    ProviderModule,
+    Provider_productsModule,
     AssistantModule, ConfigModule.forRoot({ envFilePath: '.env' }), Connection],
   controllers: [DetailAssistantController, AssistantController,
     EventController,

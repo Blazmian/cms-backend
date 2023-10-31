@@ -38,7 +38,7 @@ export class PartnerController {
     }
 
     @Get('one/:id')
-    getPartner(@Param('id') params): Promise<Partners[]> | string {
+    getPartner(@Param('id') params): Promise<Partners> | string {
         try {
             const res = this.partnerService.get(params)
             return res
@@ -59,7 +59,7 @@ export class PartnerController {
     }
 
     @Put('update/:id')
-    Update(@Param('id') id: number, @Body() params: IPartner) {
+    Update(@Param('id') id: string, @Body() params: IPartner) {
         try {
             const res = this.partnerService.update(id, params)
             return res

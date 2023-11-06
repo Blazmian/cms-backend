@@ -57,7 +57,7 @@ export class PartnerController {
             return "Cannot create partner: " + error
         }
     }
-
+    
     @Put('update/:id')
     Update(@Param('id') id: string, @Body() params: IPartner) {
         try {

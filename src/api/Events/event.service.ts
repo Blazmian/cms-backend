@@ -1,18 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Event as EventEntity } from 'src/entities/event.entity';
-import { ICreateEvent } from 'src/models/Event';
+import { ICreateEvent, ResultEvent } from 'src/models/Event';
 import { Repository } from 'typeorm';
+import { PartnerService } from '../Partners/partner.service';
 
 @Injectable()
 export class EventService {
     constructor(
         @InjectRepository(EventEntity)
-        private eventEntity: Repository<EventEntity>
+        private eventEntity: Repository<EventEntity>,
+        private partnerService: PartnerService
     ) { }
 
-    async getOne(id: number): Promise<EventEntity> {
-        return await this.eventEntity.findOne({ where: { id: id, status: 'Proceso' } })
+    async getOne(id: number): Promise<ResultEvent> {
+        const event = await this.eventEntity.findOne({ where: { id: id } })
+        if (event !== null) {
+            return { event: event, found: true }
+        } else {
+            return { event: event, found: false }
+        }
     }
 
     async getUpcomingEvents(): Promise<EventEntity[]> {
@@ -52,7 +59,7 @@ export class EventService {
         })
     }
 
-    async create(idPartner: number, eventData: ICreateEvent) {
+    async create(folioPartner: string, eventData: ICreateEvent) {
         const newEvent = new EventEntity()
         newEvent.event_name = eventData.event_name
         newEvent.description = eventData.description
@@ -60,13 +67,21 @@ export class EventService {
         newEvent.place = eventData.place
         newEvent.link = eventData.link
         newEvent.date = eventData.date
-        newEvent.hour = new Date(eventData.hour)
+        newEvent.hour = new Date(`1970-01-01T${eventData.hour}`)
         newEvent.image = eventData.image
 
-        return await this.eventEntity.save(eventData)
+        const partner = await this.partnerService.get(folioPartner)
+        newEvent.partner = partner
+        newEvent.status = 'Proceso'
+
+        return await this.eventEntity.save(newEvent)
     }
 
     async update(id: number, body: ICreateEvent) {
         return await this.eventEntity.update(id, body)
+    }
+
+    async changeStatus(event: EventEntity) {
+        return await this.eventEntity.save(event)
     }
 }

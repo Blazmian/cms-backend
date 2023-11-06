@@ -39,7 +39,6 @@ export class PartnerService {
     }
 
     async create(partner: IPartner) {
-
         const newPartner = new PartnersEntity()
         newPartner.folio = partner.folio
         newPartner.social_reason = partner.social_reason

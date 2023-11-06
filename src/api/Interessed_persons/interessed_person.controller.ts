@@ -3,7 +3,7 @@ import { Interessed_personService } from './interessed_person.service';
 import { InteressedPerson } from 'src/entities/interessed_person.entity';
 import { I_interessed_person } from 'src/models/Interessed_person';
 
-@Controller()
+@Controller('interessed-person')
 export class Interessed_personsController { 
 
     constructor(private interessed_personService: Interessed_personService){
@@ -29,7 +29,7 @@ export class Interessed_personsController {
         }
     }
 
-    @Post()
+    @Post('register-event')
     Create(@Body() params: I_interessed_person) {
         try {
             const res = this.interessed_personService.create(params)

@@ -10,4 +10,4 @@ import { SponsorsService } from './sponsors.service';
     providers: [SponsorsService],
     exports: [TypeOrmModule]
 })
-export class SponsorsModule { }
+export class SponsorsModule {}

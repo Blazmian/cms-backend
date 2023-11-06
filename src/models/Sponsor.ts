@@ -1,4 +1,4 @@
-export interface SponsorCreate {
+export interface ISponsor {
     name: string
     sponsor: string
     email: string

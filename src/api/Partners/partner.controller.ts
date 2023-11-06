@@ -3,6 +3,8 @@ import { PartnerService } from './partner.service';
 import { Partners } from 'src/entities/partners.entity';
 import { IPartner } from 'src/models/Partner';
 
+//http://localhost:3000/partner/
+
 @Controller('partner')
 export class PartnerController {
 
@@ -36,7 +38,7 @@ export class PartnerController {
             return "Cannot read partners " + error
         }
     }
-
+    
     @Get('one/:id')
     getPartner(@Param('id') params): Promise<Partners> | string {
         try {

@@ -18,6 +18,6 @@ export class Event_attendanceService {
 
     async getInteressedPersonByEvent(idEvent: number): Promise<AttendanceEventEntity[]> {
         const event = await this.eventService.getOne(idEvent)
-        return await this.attendanceEventEntity.find({ where: { event: event }, relations: { interessed: true } })
+        return await this.attendanceEventEntity.find({ where: { event: event.event }, relations: { interessed: true } })
     }
 }

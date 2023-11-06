@@ -3,7 +3,10 @@ export interface I_interessed_person {
     first_last_name : string
     second_last_name : string
     company : string
+    position: string
     email : string
-    registration_date : Date
-
+    phone : string
+    sex: string 
+    event_find: string
+    expectations: string
 }

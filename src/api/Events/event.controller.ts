@@ -1,17 +1,16 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { EventService } from './event.service';
-import { Event } from 'src/entities/event.entity';
-import { ICreateEvent } from 'src/models/Event';
+import { ICreateEvent, ResultEvent} from 'src/models/Event';
 
 @Controller('event')
 export class EventController {
 
-    constructor(private eventService: EventService) {
-
-    }
+    constructor(
+        private eventService: EventService
+    ) { }
 
     @Get('/one/:id')
-    getOne(@Param('id') id: number): Promise<Event> | string {
+    getOne(@Param('id') id: number): Promise<ResultEvent> | string {
         try {
             return this.eventService.getOne(id)
         } catch (error) {
@@ -36,6 +35,17 @@ export class EventController {
             return this.eventService.getUpcomingEvents()
         } catch (error) {
 
+        }
+    }
+
+    @Put('/update-event/:id')
+    updateEvent(@Param('id') id: number, @Body() body: ICreateEvent): boolean | string {
+        try {
+            const res = this.eventService.update(id, body)
+            console.log("Event Updated!")
+            return true
+        } catch (error) {
+            return "Cannot update event entity"
         }
     }
 }

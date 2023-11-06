@@ -40,7 +40,6 @@ export class PartnerService {
 
     async create(partner: IPartner) {
         const newPartner = new PartnersEntity()
-
         newPartner.folio = partner.folio
         newPartner.social_reason = partner.social_reason
         newPartner.comercial_name = partner.comercial_name
@@ -52,12 +51,12 @@ export class PartnerService {
         return res
     }
 
-    async update(id: number, body: IPartner) {
-        return await this.partnersEntity.update(id, body)
+    async update(folio: string, body: IPartner) {
+        return await this.partnersEntity.update(folio, body)
     }
 
-    async delete(id: number) {
-        return await this.partnersEntity.delete(id)
+    async delete(folio: string) {
+        return await this.partnersEntity.delete(folio)
     }
 
     async getPartnerEvents(folio: string): Promise<PartnersEntity[]> {

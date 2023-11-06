@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Sponsor as SponsorEntity} from 'src/entities/sponsor.entity';
 import { ISponsor } from 'src/models/Sponsor';
+import { SponsorCreate } from 'src/models/Sponsor';
 import { Repository } from 'typeorm';
 
 @Injectable()

@@ -19,11 +19,23 @@ export class InteressedPerson {
     @Column({ length: 40 })
     company: string
 
-    @Column({ length: 9 })
-    sex: string
+    @Column({ length: 30})
+    position: string
 
     @Column({ length: 50 })
     email: string
+
+    @Column({ length: 10})
+    phone: string
+
+    @Column({ length: 9 })
+    sex: string
+
+    @Column({ length: 100})
+    event_find: string
+
+    @Column({length: 150})
+    expectations: string
 
     @Column({ type: 'date' })
     registration_date: Date

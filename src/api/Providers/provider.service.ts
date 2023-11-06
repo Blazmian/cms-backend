@@ -15,7 +15,7 @@ export class ProviderService {
         return await this.providerEntity.find()
     }
 
-    async get(id: number): Promise<ProviderEntity> {
+    async getOne(id: number): Promise<ProviderEntity> {
         return await this.providerEntity.findOne(
             {
                 where: { id: id }

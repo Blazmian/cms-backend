@@ -3,4 +3,5 @@ export interface IProvider {
     email : string
     cellphone : string
     description : string
+    idProvider: number
 }

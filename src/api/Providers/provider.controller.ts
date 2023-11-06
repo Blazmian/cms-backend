@@ -22,7 +22,7 @@ export class ProviderController {
     @Get('one/:id')
     getProvider(@Param('id') params): Promise<Provider> | string {
         try {
-            const res = this.providerService.get(params)
+            const res = this.providerService.getOne(params)
             return res
         } catch (error) {
             return "Cannot read providers: " + error

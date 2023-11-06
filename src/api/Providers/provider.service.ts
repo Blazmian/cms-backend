@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Provider as ProviderEntity } from 'src/entities/provider.entity';
 import { IProvider } from 'src/models/Provider';
+import { ProviderProducts } from 'src/entities/provider_products.entity';
 
 @Injectable()
 export class ProviderService {
@@ -18,7 +19,7 @@ export class ProviderService {
     async getOne(id: number): Promise<ProviderEntity> {
         return await this.providerEntity.findOne(
             {
-                where: { id: id }
+                where: { id: id }, relations: { providerProduct: true }
             })
     }
 

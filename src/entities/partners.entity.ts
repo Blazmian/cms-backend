@@ -22,7 +22,7 @@ export class Partners {
     @Column()
     registration_date: Date
 
-    @Column({ length: 10 })
+    @Column({ length: 10, default: 'Activo' })
     status: string
 
     @Column({ type: 'double' })

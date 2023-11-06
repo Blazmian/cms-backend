@@ -39,26 +39,13 @@ export class PartnerService {
     }
 
     async create(partner: IPartner) {
-        if (!fs.existsSync(`${process.cwd()}/temp`)) {
-            fs.mkdirSync(`${process.cwd()}/temp`);
-        }
-
         const newPartner = new PartnersEntity()
+
+        newPartner.folio = partner.folio
         newPartner.social_reason = partner.social_reason
         newPartner.comercial_name = partner.comercial_name
         newPartner.legal_representative = partner.legal_representative
-        newPartner.registration_date = partner.registration_date
-        newPartner.status = partner.status
         newPartner.afiliation_payment = partner.afiliation_payment
-        newPartner.expiration_date = partner.expiration_date
-
-        if (partner.company_image) {
-            const tempFileName = uuidv4()
-            const tempFilePath = `${process.cwd()}/temp/${tempFileName}`
-            fs.writeFileSync(tempFilePath, partner.company_image)
-            newPartner.company_image = fs.readFileSync(tempFilePath)
-            fs.unlinkSync(tempFilePath)
-        }
 
         const res = await this.partnersEntity.save(newPartner)
 

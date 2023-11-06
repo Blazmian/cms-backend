@@ -1,3 +1,5 @@
+import { Event } from "src/entities/event.entity"
+
 export interface ICreateEvent {
     event_name: string
     description: string
@@ -7,4 +9,9 @@ export interface ICreateEvent {
     date: Date
     hour: string
     image: Buffer
+}
+
+export interface ResultEvent {
+    event: Event
+    found: boolean
 }

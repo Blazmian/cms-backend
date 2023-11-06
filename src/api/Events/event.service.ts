@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Event as EventEntity } from 'src/entities/event.entity';
-import { ICreateEvent } from 'src/models/Event';
+import { ICreateEvent, ResultEvent } from 'src/models/Event';
 import { Repository } from 'typeorm';
 import { PartnerService } from '../Partners/partner.service';
 
@@ -13,8 +13,13 @@ export class EventService {
         private partnerService: PartnerService
     ) { }
 
-    async getOne(id: number): Promise<EventEntity> {
-        return await this.eventEntity.findOne({ where: { id: id } })
+    async getOne(id: number): Promise<ResultEvent> {
+        const event = await this.eventEntity.findOne({ where: { id: id } })
+        if (event !== null) {
+            return { event: event, found: true }
+        } else {
+            return { event: event, found: false }
+        }
     }
 
     async getUpcomingEvents(): Promise<EventEntity[]> {
@@ -74,5 +79,9 @@ export class EventService {
 
     async update(id: number, body: ICreateEvent) {
         return await this.eventEntity.update(id, body)
+    }
+
+    async changeStatus(event: EventEntity) {
+        return await this.eventEntity.save(event)
     }
 }

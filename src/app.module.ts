@@ -1,3 +1,12 @@
+import { DetailSponsorController } from './api/DetailSponsor/detailsponsor.controller';
+import { DetailSponsorService } from './api/DetailSponsor/detailsponsor.service';
+import { DetailSponsorModule } from './api/DetailSponsor/detailsponsor.module';
+import { SponsorsController } from './api/Sponsors/sponsors.controller';
+import { SponsorsService } from './api/Sponsors/sponsors.service';
+import { SponsorsModule } from './api/Sponsors/sponsors.module';
+import { CanceledEventController } from './api/CanceledEvent/canceledevent.controller';
+import { CanceledEventService } from './api/CanceledEvent/canceledevent.service';
+import { CanceledEventModule } from './api/CanceledEvent/canceledevent.module';
 import { Interessed_personsModule } from './api/Interessed_persons/interessed_person.module';
 import { Events_attendanceModule } from './api/Events_attendance/event_attendance.module';
 import { Partners_affiliatedModule } from './api/Partners_affiliated/partner_affiliated.module';
@@ -21,6 +30,9 @@ import { PartnerService } from './api/Partners/partner.service';
 
 @Module({
   imports: [
+    DetailSponsorModule,
+    SponsorsModule,
+    CanceledEventModule,
     GatewayModule,
     EventModule,
     Interessed_personsModule,
@@ -29,10 +41,16 @@ import { PartnerService } from './api/Partners/partner.service';
     DetailAssistantModule,
     PartnerModule,
     AssistantModule, ConfigModule.forRoot({ envFilePath: '.env' }), Connection],
-  controllers: [DetailAssistantController, AssistantController,
+  controllers: [
+    DetailSponsorController,
+    SponsorsController,
+    CanceledEventController, DetailAssistantController, AssistantController,
     EventController,
     AppController],
   providers: [
+    DetailSponsorService,
+    SponsorsService,
+    CanceledEventService,
     DetailAssistantService, AssistantService,
     EventService,
     AppService,

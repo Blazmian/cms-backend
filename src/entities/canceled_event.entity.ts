@@ -9,6 +9,9 @@ export class CanceledEvent {
     @Column({ type: 'text' })
     reason: string
 
+    @Column({ type: 'datetime' })
+    canceled_day: Date
+
     @OneToOne(() => Event)
     @JoinColumn()
     event: Event

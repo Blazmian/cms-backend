@@ -1,3 +1,4 @@
+import { InventoryModule } from './api/Inventory/inventory.module';
 import { DetailSponsorController } from './api/DetailSponsor/detailsponsor.controller';
 import { DetailSponsorService } from './api/DetailSponsor/detailsponsor.service';
 import { DetailSponsorModule } from './api/DetailSponsor/detailsponsor.module';
@@ -29,9 +30,12 @@ import { EventService } from './api/Events/event.service';
 import { ProviderModule } from './api/Providers/provider.module';
 import { Provider_productsModule } from './api/Provider_products/provider_products.module';
 import { PartnerService } from './api/Partners/partner.service';
+import { InventoryController } from './api/Inventory/inventory.controller';
+import { InventoryService } from './api/Inventory/inventory.service';
 
 @Module({
   imports: [
+    InventoryModule,
     DetailSponsorModule,
     SponsorsModule,
     CanceledEventModule,
@@ -46,12 +50,14 @@ import { PartnerService } from './api/Partners/partner.service';
     Provider_productsModule,
     AssistantModule, ConfigModule.forRoot({ envFilePath: '.env' }), Connection],
   controllers: [
+    InventoryController,
     DetailSponsorController,
     SponsorsController,
     CanceledEventController, DetailAssistantController, AssistantController,
     EventController,
     AppController],
   providers: [
+    InventoryService,
     DetailSponsorService,
     SponsorsService,
     CanceledEventService,

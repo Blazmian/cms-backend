@@ -1,9 +1,9 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
-import { Inventary } from './inventary.entity'
+import { Inventory } from './inventory.entity'
 import { Event } from './event.entity'
 
 @Entity()
-export class DetailInventary {
+export class DetailInventory {
     @PrimaryGeneratedColumn()
     id: number
 
@@ -13,9 +13,9 @@ export class DetailInventary {
     @Column({ type: 'date' })
     return_date: Date
 
-    @ManyToOne(() => Inventary, (inventary) => inventary.detail)
-    inventary: Inventary
+    @ManyToOne(() => Inventory, (inventory) => inventory.detail)
+    inventory: Inventory
 
-    @ManyToOne(() => Event, (event) => event.detailInventary)
+    @ManyToOne(() => Event, (event) => event.detailInventory)
     event: Event
 }

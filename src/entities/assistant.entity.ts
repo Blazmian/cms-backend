@@ -12,6 +12,9 @@ export class Assistant {
     @Column({ length: 30 })
     lastname: string
 
+    @Column({ length: 50 })
+    email: string
+
     @Column({ length: 10 })
     cellphone: string
 

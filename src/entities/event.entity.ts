@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import { DetailProductsEvent } from './detail_products_event.entity'
 import { DetailAssistant } from './detail_assistant.entity'
-import { DetailInventary } from './detail_inventary.entity'
+import { DetailInventory } from './detail_inventory.entity'
 import { DetailSponsor } from './detail_sponsor.entity'
 import { Partners } from './partners.entity'
 import { AttendanceEvent } from './attendance_event.entity'
@@ -50,8 +50,8 @@ export class Event {
     @OneToMany(() => DetailAssistant, (detailAssistant) => detailAssistant.event)
     detailAssistant: DetailAssistant[]
     
-    @OneToMany(() => DetailInventary, (detailInventary) => detailInventary.event)
-    detailInventary: DetailInventary[]
+    @OneToMany(() => DetailInventory, (detailInventory) => detailInventory.event)
+    detailInventory: DetailInventory[]
 
     @OneToMany(() => DetailSponsor, (detailSponsor) => detailSponsor.event)
     detailSponsor: DetailSponsor[]

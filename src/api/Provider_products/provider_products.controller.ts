@@ -47,7 +47,7 @@ export class Provider_productsController {
             const res = this.provider_productsService.update(id, params)
             return res
         } catch (error) {
-            return "Cannot update partner: " + error
+            return "Cannot update product: " + error
         }
     }
 

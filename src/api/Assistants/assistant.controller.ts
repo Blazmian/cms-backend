@@ -9,9 +9,10 @@ export class AssistantController {
     constructor(private assistantService: AssistantService) { }
 
     @Post()
-    createAssistant(@Body() data: ICreateAssistant): Promise<Number> | string {
+    createAssistant(@Body() data: ICreateAssistant): boolean | string {
         try {
-            return this.assistantService.create(data)
+            this.assistantService.create(data)
+            return true
         } catch (error) {
             return "Cannot create assistant " + error
         }

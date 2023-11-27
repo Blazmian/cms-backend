@@ -14,6 +14,6 @@ export class DetailAssistantService {
 
     async getAssistantFromEvent(idEvent: number) {
         const event = await this.eventService.getOne(idEvent)
-        return await this.detailAssistantEntity.find({ where: { event: event.event }, relations: { assistant: true } })
+        return await this.detailAssistantEntity.find({ where: { event: event.event }, relations: { assistant: true, event: true } })
     }
 }

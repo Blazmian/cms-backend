@@ -12,7 +12,7 @@ export class AssistantService {
     ) { }
 
     async getOne(id: number): Promise<AssistantEntity | number> {
-        const res = await this.assistantEntity.findOne({ where: { id: id }, relations: { detail: true } })
+        const res = await this.assistantEntity.findOne({ where: { id: id }, relations: ["detail", "detail.event", "detail.event.partner"] })
         if (res === null) {
             return -1
         }

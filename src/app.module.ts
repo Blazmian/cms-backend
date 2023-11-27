@@ -1,3 +1,6 @@
+import { TrackingController } from './api/Tracking/tracking.controller';
+import { TrackingService } from './api/Tracking/tracking.service';
+import { TrackingModule } from './api/Tracking/tracking.module';
 import { InventoryModule } from './api/Inventory/inventory.module';
 import { DetailSponsorController } from './api/DetailSponsor/detailsponsor.controller';
 import { DetailSponsorService } from './api/DetailSponsor/detailsponsor.service';
@@ -35,6 +38,7 @@ import { InventoryService } from './api/Inventory/inventory.service';
 
 @Module({
   imports: [
+    TrackingModule,
     InventoryModule,
     DetailSponsorModule,
     SponsorsModule,
@@ -50,6 +54,7 @@ import { InventoryService } from './api/Inventory/inventory.service';
     Provider_productsModule,
     AssistantModule, ConfigModule.forRoot({ envFilePath: '.env' }), Connection],
   controllers: [
+    TrackingController,
     InventoryController,
     DetailSponsorController,
     SponsorsController,
@@ -57,6 +62,7 @@ import { InventoryService } from './api/Inventory/inventory.service';
     EventController,
     AppController],
   providers: [
+    TrackingService,
     InventoryService,
     DetailSponsorService,
     SponsorsService,
